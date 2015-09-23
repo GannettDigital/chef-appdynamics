@@ -13,8 +13,8 @@ describe 'appdynamics::java_agent' do
         node.set['appdynamics']['controller']['accesskey'] = 'supersecret'
       end.converge(described_recipe)
     end
-    it 'includes the recipe ark' do
-      expect(chef_run).to include_recipe('ark')
+    it 'installs a package unzip' do
+      expect(chef_run).to install_package('unzip')
     end
     it 'runs ark to unzip-appdynamics-java-agent' do
       expect(chef_run).to put_ark('javaagent')
@@ -35,8 +35,8 @@ describe 'appdynamics::java_agent' do
         node.set['appdynamics']['controller']['accesskey'] = 'supersecret'
       end.converge(described_recipe)
     end
-    it 'includes the recipe ark' do
-      expect(chef_run).to include_recipe('ark')
+    it 'installs a package unzip' do
+      expect(chef_run).to_not install_package('unzip')
     end
     it 'runs ark to unzip-appdynamics-java-agent' do
       expect(chef_run).to put_ark('javaagent')

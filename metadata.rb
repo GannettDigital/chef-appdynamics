@@ -1,5 +1,5 @@
 name              'appdynamics'
-version           '0.1.9'
+version           '0.1.8'
 
 maintainer        'AppDynamics'
 maintainer_email  'help@appdynamics.com'

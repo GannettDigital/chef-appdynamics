@@ -3,10 +3,6 @@ appdynamics CHANGELOG
 
 This file is used to list changes made in each version of the appdynamics cookbook.
 
-0.1.9
------
-- [akemner] - lock rubocop to 0.33.0, add include ark to java_agent.rb drop package unzip(not needed anymore), udpate chefspec tests
-
 0.1.8
 -----
 - [amacaraeg] - updated serverspec tests to point to the correct location and now the tests are passing 100%

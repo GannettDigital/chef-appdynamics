@@ -1,5 +1,3 @@
-include_recipe 'ark'
-
 agent = node['appdynamics']['java_agent']
 controller = node['appdynamics']['controller']
 
@@ -12,6 +10,8 @@ unless package_source
   package_source << 'ibm-' if agent['ibm_jvm']
   package_source << "#{version}.zip"
 end
+
+package 'unzip' if platform_family?('debian')
 
 remote_file node['appdynamics']['java_agent']['zip'] do
   source package_source
