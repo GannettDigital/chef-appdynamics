@@ -3,6 +3,18 @@ appdynamics CHANGELOG
 
 This file is used to list changes made in each version of the appdynamics cookbook.
 
+0.2.4
+-----
+- [nmcginnis] - Removed erroneous characters in dotnet template  which causes issues with auto instrumentation.
+
+0.2.3
+-----
+- [akemner] - dynamic integration testing for windows with fixture cookbook test-helper
+
+0.2.2
+-----
+- [dkoepke] - use windows_package instead of package--we were seeing `package` fail in certain invocations of chef-client due the `source` attribute magically growing a drive letter; update Travis to use rake test
+
 0.2.1
 -----
 - [akemner] - refactor dotnet_agent so the template managed by chef is the running config.xml rather then setup.xml, drop using setup.xml in the install package, update chefspec and integration tests for dotnet_agent. also resolved issue with ubuntu integration testing for nodejs and python by including apt::default in the runlist for those suites
