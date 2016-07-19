@@ -13,11 +13,8 @@ unless package_source
 
   if agent['use_bundled_package']
     package_source << 'machineagent-bundle-'
-    if node['kernel']['machine'] == 'x86_64'
-      package_source << '64bit-'
-    else
-      package_source << '32bit-'
-    end
+    package_source << '64bit-' if node['kernel']['machine'] == 'x86_64'
+    package_source << '32bit-' if node['kernel']['machine'] != 'x86_64'
 
     package_source << value_for_platform_family(
       %w(mswin windows) => 'windows',

@@ -1,5 +1,5 @@
 name              'appdynamics'
-version           '0.2.4'
+version           '0.2.5'
 
 maintainer        'AppDynamics'
 maintainer_email  'help@appdynamics.com'
@@ -14,7 +14,7 @@ depends 'nodejs'
 depends 'java'
 depends 'apt'
 depends 'powershell'
-depends 'ark'
+depends 'ark', '= 0.9.0'
 
 # Red Hat
 supports 'amazon'

@@ -132,3 +132,16 @@ suites:
     excludes:
       - ubuntu
       - centos
+
+  - name: remove_dotnet_agent
+    run_list:
+      - recipe[iis]
+      - recipe[test::install_agent]
+      - recipe[appdynamics::remove_dotnet_agent]
+    attributes:
+    chef_client:
+      config:
+        log_level: :debug
+    excludes:
+      - ubuntu-12.04
+      - centos-6.7

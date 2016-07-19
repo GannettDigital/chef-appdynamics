@@ -81,11 +81,10 @@ suites:
 
   - name: java_agent
     run_list:
-      - recipe[test-helper::default]
+      - recipe[gd-test-helper::default]
       - recipe[appdynamics_test::java_agent]
       - recipe[apt::default]
       - recipe[appdynamics::java_agent]
-
     attributes:
       appdynamics:
         java_agent:
@@ -96,7 +95,7 @@ suites:
 
   - name: dotnet_agent
     run_list:
-      - recipe[test-helper::default]
+      - recipe[gd-test-helper::default]
       - recipe[iis]
       - recipe[appdynamics::dotnet_agent]
     attributes:
@@ -110,3 +109,18 @@ suites:
     excludes:
       - ubuntu-12.04
       - centos-6.7
+
+  - name: remove_dotnet_agent
+    run_list:
+      - recipe[gd-test-helper::default]
+      - recipe[iis]
+      - recipe[test::install_agent]
+      - recipe[appdynamics::remove_dotnet_agent]
+    attributes:
+    chef_client:
+      config:
+        log_level: :debug
+    excludes:
+      - ubuntu-12.04
+      - centos-6.7
+      - windows2012r2
