@@ -36,13 +36,6 @@ transport:
   ssh_key: <%= ENV['SSH_KEY_PATH'] %><%= ENV['AWS_SSH_KEY'] %>.pem
 
 platforms:
-  - name: centos
-    driver:
-      image_id: <%= ENV['AWS_CENTOS7_AMI_ID'] %>
-      instance_type: <%= ENV['LINUX_INSTANCE_SIZE'] %>
-      user_data: <%= ENV['LINUX_USER_DATA_PATH'] %>
-    transport:
-      username: <%= ENV['AWS_CENTOS_USERNAME'] %>
   - name: windows-2008r2
     driver:
       image_id: <%= ENV['AWS_WINDOWS2008R2_AMI_ID'] %>
@@ -52,75 +45,6 @@ platforms:
       name: winrm
 
 suites:
-  - name: nodejs_agent
-    run_list:
-      - recipe[nodejs::default]
-      - recipe[appdynamics::nodejs_agent]
-    attributes:
-      nodejs:
-        install_method: source
-        version: '4.1.3'
-      appdynamics:
-        nodejs_agent:
-          path: /home/vagrant
-    excludes:
-      - windows-2012r2
-      - windows-2008r2
-
-  - name: python_agent
-    run_list:
-      - recipe[python::default]
-      - recipe[appdynamics::python_agent]
-    attributes:
-      appdynamics:
-        python_agent:
-          debug: true
-          dir: '/opt/pyagent'
-    excludes:
-      - windows-2012r2
-      - windows-2008r2
-
-  - name: machine_agent
-    run_list:
-      - recipe[apt::default]
-      - recipe[java::default]
-      - recipe[appdynamics::machine_agent]
-    excludes:
-      - windows-2012r2
-      - windows-2008r2
-
-  - name: java_agent
-    run_list:
-      - recipe[gd-test-helper::default]
-      - recipe[appdynamics_test::java_agent]
-      - recipe[apt::default]
-      - recipe[appdynamics::java_agent]
-
-    attributes:
-      appdynamics:
-        java_agent:
-          owner: someuser
-    excludes:
-      - windows-2012r2
-      - windows-2008r2
-
-  - name: dotnet_agent
-    run_list:
-      - recipe[gd-test-helper::default]
-      - recipe[iis]
-      - recipe[appdynamics::dotnet_agent]
-    attributes:
-      appdynamics:
-        dotnet_agent:
-          instrument_iis: true
-          standalone_apps: [{name: W3SVC, executable: svchost.exe, tier: w3svc, commandline: -k iissvcs, restart: false },{name: MSDTC, executable: msdtc.exe, tier: msdtc, commandline: , restart: true}]
-    chef_client:
-      config:
-        log_level: :debug
-    excludes:
-      - ubuntu
-      - centos
-
   - name: remove_dotnet_agent
     run_list:
       - recipe[gd-test-helper::default]
@@ -131,7 +55,3 @@ suites:
     chef_client:
       config:
         log_level: :debug
-    excludes:
-      - ubuntu-12.04
-      - centos-6.7
-      - windows-2012r2
