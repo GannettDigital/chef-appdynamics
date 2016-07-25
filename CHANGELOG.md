@@ -3,6 +3,10 @@ appdynamics CHANGELOG
 
 This file is used to list changes made in each version of the appdynamics cookbook.
 
+0.2.5
+-----
+- [nmcginnis] - created uninstall recipe to remove the dotnet agent and perform cleanup, pinned ark and set berks source to our supermarket due to ark issue.
+
 0.2.4
 -----
 - [nmcginnis] - Removed erroneous characters in dotnet template  which causes issues with auto instrumentation.
