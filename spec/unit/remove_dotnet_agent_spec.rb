@@ -14,4 +14,8 @@ describe 'appdynamics::remove_dotnet_agent' do
   it 'removes the appdynamics config directory' do
     expect(chef_run).to delete_directory('C:\ProgramData\AppDynamics')
   end
+
+  it 'restarts iis' do
+    expect(chef_run).to run_execute('iisreset')
+  end
 end
