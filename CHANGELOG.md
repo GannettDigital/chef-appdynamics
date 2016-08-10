@@ -3,6 +3,10 @@ appdynamics CHANGELOG
 
 This file is used to list changes made in each version of the appdynamics cookbook.
 
+0.2.6
+-----
+- [dwashko] - Added iisreset to dotnet agent removal recipe to be able to delete the appd programdata directory. IIS was still writing to this location preventing the directory from being removed.
+
 0.2.5
 -----
 - [nmcginnis] - created uninstall recipe to remove the dotnet agent and perform cleanup, pinned ark and set berks source to our supermarket due to ark issue.
